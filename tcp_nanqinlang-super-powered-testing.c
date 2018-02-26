@@ -151,14 +151,14 @@ static const int bbr_bw_rtts = CYCLE_LEN + 7;
 /* Window length of min_rtt filter (in sec): */
 // minimum RTT
 // default is 10 seconds
-static const u32 bbr_min_rtt_win_sec = 15;
+static const u32 bbr_min_rtt_win_sec = 5;
 /* Minimum time (in ms) spent at bbr_cwnd_min_target in BBR_PROBE_RTT mode: */
 // minimum time of keeping in BBR_DRAIN mode
 // default is 200 ms
 // i set it as 100 ms, decrease minimum drain's time to early switch to BBR_PROBE_BW mode
-static const u32 bbr_probe_rtt_mode_ms = 150;
+static const u32 bbr_probe_rtt_mode_ms = 50;
 /* Skip TSO below the following bandwidth (bits/sec): */
-static const int bbr_min_tso_rate = 15000000;
+static const int bbr_min_tso_rate = 1024000;
 
 /* We use a high_gain value of 2/ln(2) because it's the smallest pacing gain
  * that will allow a smoothly increasing pacing rate that will double each RTT
@@ -167,12 +167,12 @@ static const int bbr_min_tso_rate = 15000000;
  */
 // defaultlt use [2885/1000 + 1] to balance high gain pacing
 // i set it as [3 + 1]
-static const int bbr_high_gain  = BBR_UNIT * 3000 / 1000 + 1;
+static const int bbr_high_gain  = BBR_UNIT * 4000 / 1000 + 1;
 /* The pacing gain of 1/high_gain in BBR_DRAIN is calculated to typically drain
  * the queue created in BBR_STARTUP in a single round:
  */
 // according to above, set this as [3 + 1]
-static const int bbr_drain_gain = BBR_UNIT * 800 / 3000;
+static const int bbr_drain_gain = BBR_UNIT * 1000 / 4000;
 /* The gain for deriving steady-state cwnd tolerates delayed/stretched ACKs: */
 // BBR takes [the calculated BDP]*2 as congestion-window
 // when is in BBR_PROBE_BW mode, calculating pacing-rate-which-used-by-cwnd is not based on "bbr_pacing_gain" number-group, but unvariable [BBR_UNIT * 2]
@@ -190,7 +190,7 @@ static const int bbr_pacing_gain[] = {
 	// the following 6 pacing rate value, are used to decide that:
 	// those 6 phenemonons are all take [the max bw and the min rtt discovered in 10 bbr period] as rate and cwnd.
 	// increase it to calculate bigger target value.
-	BBR_UNIT * 5 / 4, BBR_UNIT * 5 / 4, BBR_UNIT * 5 / 4,	/* cruise at 1.0*bw to utilize pipe, */
+	BBR_UNIT * 6 / 4, BBR_UNIT * 6 / 4, BBR_UNIT * 6 / 4,	/* cruise at 1.0*bw to utilize pipe, */
 	BBR_UNIT * 8 / 4, BBR_UNIT * 8 / 4, BBR_UNIT * 8 / 4	/* without creating excess queue... */
 };
 
@@ -205,11 +205,11 @@ static const u32 bbr_cycle_rand = 7;
 // use 1 package to discover minimum rtt is less effective.
 // use 5 package to discover minimum rtt is more effective, but may makes a heavy package queue.
 // use 4 package to discover minimum rtt is just good.
-static const u32 bbr_cwnd_min_target = 5;
+static const u32 bbr_cwnd_min_target = 4;
 
 /* To estimate if BBR_STARTUP mode (i.e. high_gain) has filled pipe... */
 /* If bw has increased significantly (1.25x), there may be more bw available: */
-static const u32 bbr_full_bw_thresh = BBR_UNIT * 5 / 4;
+static const u32 bbr_full_bw_thresh = BBR_UNIT * 8 / 4;
 /* But after 3 rounds w/o significant bw growth, estimate pipe is full: */
 static const u32 bbr_full_bw_cnt = 3;
 
@@ -217,7 +217,7 @@ static const u32 bbr_full_bw_cnt = 3;
 /* The minimum number of rounds in an LT bw sampling interval: */
 static const u32 bbr_lt_intvl_min_rtts = 4;
 /* If lost/delivered ratio > 20%, interval is "lossy" and we may be policed: */
-static const u32 bbr_lt_loss_thresh = 50;
+static const u32 bbr_lt_loss_thresh = 60;
 /* If 2 intervals have a bw ratio <= 1/8, their bw is "consistent": */
 // i set its minimum limit as [1/4] ratio
 static const u32 bbr_lt_bw_ratio = BBR_UNIT / 4;
@@ -225,7 +225,7 @@ static const u32 bbr_lt_bw_ratio = BBR_UNIT / 4;
 // according to the above "bbr_lt_bw_ratio = BBR_UNIT / 4", i set this as [4000/4]
 static const u32 bbr_lt_bw_diff = 4000 / 4;
 /* If we estimate we're policed, use lt_bw for this many round trips: */
-static const u32 bbr_lt_bw_max_rtts = 60;
+static const u32 bbr_lt_bw_max_rtts = 40;
 
 /* Do we estimate that STARTUP filled the pipe? */
 static bool bbr_full_bw_reached(const struct sock *sk)
