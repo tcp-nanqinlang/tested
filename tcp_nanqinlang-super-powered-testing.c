@@ -2,7 +2,7 @@
 
  * Debian
 
- * general kernel
+ * kernel v4.9.3-v4.12.x
 
  × New BBR Congestion Control
 
