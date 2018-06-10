@@ -11,7 +11,7 @@ As this will, `this repo is just for testing`, please do not use it with importa
 
 ## script
 ```bash
-wget https://raw.githubusercontent.com/nanqinlang/tcp_nanqinlang-test/master/tcp_nanqinlang-test.sh
+wget https://raw.githubusercontent.com/tcp-nanqinlang/tested/master/tcp_nanqinlang-test.sh
 bash tcp_nanqinlang-test.sh
 ```
 ths usage of script please refer via: https://sometimesnaive.org/article/37
