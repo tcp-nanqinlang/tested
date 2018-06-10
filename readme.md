@@ -1,9 +1,9 @@
 # tcp_nanqinlang
 
-[![build](https://github.com/nanqinlang/SVG/blob/master/build%20passing.svg)](https://github.com/nanqinlang/tcp_nanqinlang-test)
-[![language](https://github.com/nanqinlang/SVG/blob/master/language-c-blue.svg)](https://github.com/nanqinlang/tcp_nanqinlang-test)
-[![author](https://github.com/nanqinlang/SVG/blob/master/author-nanqinlang-lightgrey.svg)](https://github.com/nanqinlang/tcp_nanqinlang-test)
-[![license](https://github.com/nanqinlang/SVG/blob/master/license-GPLv3-orange.svg)](https://github.com/nanqinlang/tcp_nanqinlang-test)
+[![build](https://github.com/nanqinlang/SVG/blob/master/build%20passing.svg)](https://github.com/tcp-nanqinlang/tested)
+[![language](https://github.com/nanqinlang/SVG/blob/master/language-c-blue.svg)](https://github.com/tcp-nanqinlang/tested)
+[![author](https://github.com/nanqinlang/SVG/blob/master/author-nanqinlang-lightgrey.svg)](https://github.com/tcp-nanqinlang/tested)
+[![license](https://github.com/nanqinlang/SVG/blob/master/license-GPLv3-orange.svg)](https://github.com/tcp-nanqinlang/tested)
 
 `super-powered-testing branch` !
 
@@ -14,7 +14,7 @@ As this will, `this repo is just for testing`, please do not use it with importa
 wget https://raw.githubusercontent.com/nanqinlang/tcp_nanqinlang-test/master/tcp_nanqinlang-test.sh
 bash tcp_nanqinlang-test.sh
 ```
-ths usage of script please refer via: https://sometimesnaive.org/article/linux/bash/tcp_nanqinlang
+ths usage of script please refer via: https://sometimesnaive.org/article/37
 
 ## manual
 ### requirements
@@ -32,4 +32,4 @@ make install
 ```
 
 If you have no a environment, you should build that.  
-via: https://sometimesnaive.org/article/linux/technique/tcp_nanqinlang-manual-debian
+via: https://sometimesnaive.org/article/37
